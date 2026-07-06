@@ -9,3 +9,4 @@ vendor/
 coverage/
 postgres-data/
 .vercel/
+.worktrees/
