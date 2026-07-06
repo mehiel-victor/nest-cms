@@ -374,10 +374,10 @@ onMounted(() => {
   <main class="cms-landing">
     <section class="cms-hero">
       <div class="cms-hero-copy">
-        <p class="eyebrow">NestCMS product validation</p>
-        <h1>CMS visual com IA para publicar páginas no seu domínio.</h1>
+        <p class="eyebrow">Editor visual com IA</p>
+        <h1>Crie páginas profissionais no seu domínio sem depender de programador.</h1>
         <p>
-          Crie páginas profissionais sem depender de programador, sem configurar plugins e sem transformar cada ajuste em um projeto técnico.
+          O NestCMS ajuda criadores solo a montar páginas visuais, melhorar conteúdo com IA e publicar com controle.
         </p>
         <div class="cms-actions">
           <a href="#waitlist" @click="track('cms_primary_cta_clicked', { target: 'waitlist' })">
@@ -389,7 +389,7 @@ onMounted(() => {
             </CButton>
           </a>
           <NuxtLink to="/demo" class="cms-secondary-link">
-            Ver demo atual
+            Explorar demo atual
           </NuxtLink>
         </div>
       </div>
@@ -470,10 +470,10 @@ onMounted(() => {
 
     <section id="waitlist" class="cms-section cms-waitlist">
       <div>
-        <p class="eyebrow">Validação</p>
+        <p class="eyebrow">Acesso antecipado</p>
         <h2>Quer testar quando o editor estiver pronto?</h2>
         <p>
-          Este formulário salva o interesse localmente nesta fase. A próxima etapa conecta envio real depois que a proposta for validada.
+          Conte o que você quer publicar e entre na lista para testar o editor visual do NestCMS.
         </p>
       </div>
 
@@ -497,7 +497,7 @@ onMounted(() => {
           </span>
         </CButton>
         <p v-if="submitted" class="notice success">
-          Interesse registrado nesta sessão. Próxima implementação deve conectar este evento a um backend ou formulário real.
+          Interesse registrado para esta sessão de validação.
         </p>
       </form>
     </section>
