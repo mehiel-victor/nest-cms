@@ -28,6 +28,7 @@ const submitted = ref(false)
 const selectedPrompt = ref('melhore este título')
 const waitlistSection = ref<HTMLElement | null>(null)
 const comparisonSection = ref<HTMLElement | null>(null)
+let comparisonObserver: IntersectionObserver | null = null
 
 const prompts = [
   'melhore este título',
@@ -93,23 +94,25 @@ onMounted(() => {
     return
   }
 
-  const observer = new IntersectionObserver((entries) => {
+  comparisonObserver = new IntersectionObserver((entries) => {
     const entry = entries[0]
     if (!entry?.isIntersecting) {
       return
     }
 
     track('cms_competitor_section_viewed', { section: 'comparison' })
-    observer.disconnect()
+    comparisonObserver?.disconnect()
+    comparisonObserver = null
   }, {
     threshold: 0.35
   })
 
-  observer.observe(target)
+  comparisonObserver.observe(target)
+})
 
-  onUnmounted(() => {
-    observer.disconnect()
-  })
+onUnmounted(() => {
+  comparisonObserver?.disconnect()
+  comparisonObserver = null
 })
 </script>
 
