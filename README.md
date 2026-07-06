@@ -4,6 +4,19 @@ NestCMS is a frontend-only portfolio demo for DTC commerce operations. It shows 
 
 All product data is seeded and simulated in the browser. Actions update local mock state by design.
 
+## CMS Product Validation
+
+The current public demo remains frontend-only, but NestCMS is being repositioned into an AI-assisted visual CMS for solo creators.
+
+Open `/cms` to review the validation landing page for the new direction. The route tests the positioning before full editor implementation:
+
+- visual page publishing for solo creators;
+- custom-domain publishing promise;
+- AI copilot suggestions for copy, style, and page elements;
+- draft-first publishing model.
+
+The full CMS editor, AI backend mediation, public renderer, and custom-domain runtime require separate implementation plans after competitive research and landing-page validation are reviewed.
+
 ## Demo Scope
 
 - Demo profile access for admin, operator, and finance roles.

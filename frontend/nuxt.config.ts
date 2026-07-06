@@ -5,11 +5,11 @@ export default defineNuxtConfig({
   css: ['~/assets/scss/main.scss'],
   app: {
     head: {
-      title: 'NestCMS Portfolio Demo',
+      title: 'NestCMS',
       meta: [
         {
           name: 'description',
-          content: 'Frontend-only commerce operations portfolio demo with local mock state.'
+          content: 'AI-assisted visual CMS validation and frontend-only portfolio demo.'
         }
       ]
     }
