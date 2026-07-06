@@ -1,8 +1,18 @@
 # NestCMS CMS Backlog Issue Drafts
 
 Date: 2026-07-05
-Status: draft for GitHub issues
+Status: published as GitHub issues
 Source spec: `docs/superpowers/specs/2026-07-05-nestcms-cms-product-discovery-design.md`
+
+Published issues:
+
+- [#6 Create CMS competitive research matrix](https://github.com/mehiel-victor/nest-cms/issues/6)
+- [#7 Publish CMS validation landing page](https://github.com/mehiel-victor/nest-cms/issues/7)
+- [#8 Review landing page validation signals](https://github.com/mehiel-victor/nest-cms/issues/8)
+- [#9 Define CMS account/site/page data model](https://github.com/mehiel-victor/nest-cms/issues/9)
+- [#10 Plan canvas editor MVP](https://github.com/mehiel-victor/nest-cms/issues/10)
+- [#11 Plan AI copilot mediation](https://github.com/mehiel-victor/nest-cms/issues/11)
+- [#12 Plan public renderer and publishing snapshots](https://github.com/mehiel-victor/nest-cms/issues/12)
 
 ## Milestone 0: Validation
 
