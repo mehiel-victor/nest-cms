@@ -10,3 +10,4 @@ coverage/
 postgres-data/
 .vercel/
 .worktrees/
+.superpowers/
