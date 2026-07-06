@@ -162,6 +162,7 @@ onUnmounted(() => {
                 :key="prompt"
                 type="button"
                 :class="{ active: selectedPrompt === prompt }"
+                :aria-pressed="selectedPrompt === prompt"
                 @click="choosePrompt(prompt)"
               >
                 {{ prompt }}
@@ -240,7 +241,7 @@ onUnmounted(() => {
             <Sparkles :size="16" aria-hidden="true" />
           </span>
         </CButton>
-        <p v-if="submitted" class="notice success">
+        <p v-if="submitted" class="notice success" role="status" aria-live="polite">
           Interesse registrado para esta sessão de validação.
         </p>
       </form>
