@@ -26,6 +26,8 @@ const form = reactive({
 
 const submitted = ref(false)
 const selectedPrompt = ref('melhore este título')
+const waitlistSection = ref<HTMLElement | null>(null)
+const comparisonSection = ref<HTMLElement | null>(null)
 
 const prompts = [
   'melhore este título',
@@ -69,8 +71,45 @@ const submitWaitlist = () => {
   })
 }
 
+const goToWaitlist = async () => {
+  track('cms_primary_cta_clicked', { target: 'waitlist' })
+
+  await nextTick()
+
+  const target = waitlistSection.value
+  if (!target) {
+    return
+  }
+
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  target.focus({ preventScroll: true })
+}
+
 onMounted(() => {
   track('cms_landing_viewed', { route: '/cms' })
+
+  const target = comparisonSection.value
+  if (!target || typeof IntersectionObserver === 'undefined') {
+    return
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    const entry = entries[0]
+    if (!entry?.isIntersecting) {
+      return
+    }
+
+    track('cms_competitor_section_viewed', { section: 'comparison' })
+    observer.disconnect()
+  }, {
+    threshold: 0.35
+  })
+
+  observer.observe(target)
+
+  onUnmounted(() => {
+    observer.disconnect()
+  })
 })
 </script>
 
@@ -84,21 +123,19 @@ onMounted(() => {
           O NestCMS ajuda criadores solo a montar páginas visuais, melhorar conteúdo com IA e publicar com controle.
         </p>
         <div class="cms-actions">
-          <a href="#waitlist" @click="track('cms_primary_cta_clicked', { target: 'waitlist' })">
-            <CButton color-scheme="green" size="lg">
-              <span class="icon-label">
-                Entrar na lista
-                <ArrowRight :size="18" aria-hidden="true" />
-              </span>
-            </CButton>
-          </a>
+          <CButton color-scheme="green" size="lg" @click="goToWaitlist">
+            <span class="icon-label">
+              Entrar na lista
+              <ArrowRight :size="18" aria-hidden="true" />
+            </span>
+          </CButton>
           <NuxtLink to="/demo" class="cms-secondary-link">
             Explorar demo atual
           </NuxtLink>
         </div>
       </div>
 
-      <div class="cms-product-preview" aria-label="Prévia conceitual do editor NestCMS">
+      <div class="cms-product-preview">
         <div class="cms-browser-bar">
           <span />
           <span />
@@ -156,7 +193,7 @@ onMounted(() => {
       </div>
     </section>
 
-    <section class="cms-section cms-split">
+    <section ref="comparisonSection" class="cms-section cms-split">
       <div>
         <p class="eyebrow">Por que não outro builder?</p>
         <h2>Menos configuração, mais publicação.</h2>
@@ -164,7 +201,7 @@ onMounted(() => {
           O NestCMS começa menor: um site, páginas visuais, rascunho com autosave, publicação manual e IA ajudando no ponto exato da edição.
         </p>
       </div>
-      <div class="cms-checklist" @mouseenter="track('cms_competitor_section_viewed', { section: 'comparison' })">
+      <div class="cms-checklist">
         <div><CheckCircle2 :size="18" aria-hidden="true" /> Sem plugins para manter.</div>
         <div><CheckCircle2 :size="18" aria-hidden="true" /> Sem código para publicar a primeira página.</div>
         <div><CheckCircle2 :size="18" aria-hidden="true" /> Sem IA aplicando mudanças sem revisão.</div>
@@ -172,7 +209,7 @@ onMounted(() => {
       </div>
     </section>
 
-    <section id="waitlist" class="cms-section cms-waitlist">
+    <section id="waitlist" ref="waitlistSection" class="cms-section cms-waitlist" tabindex="-1">
       <div>
         <p class="eyebrow">Acesso antecipado</p>
         <h2>Quer testar quando o editor estiver pronto?</h2>

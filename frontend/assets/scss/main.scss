@@ -775,8 +775,7 @@ th {
   padding: 24px 0 56px;
 }
 
-.cms-proof-item,
-.cms-section {
+.cms-proof-item {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #ffffff;
@@ -803,7 +802,8 @@ th {
   grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
   gap: 22px;
   align-items: start;
-  margin-bottom: 18px;
+  margin-bottom: 32px;
+  padding: 12px 0;
 }
 
 .cms-checklist {
@@ -842,6 +842,7 @@ th {
 
 .cms-roadmap {
   margin-bottom: 56px;
+  padding-bottom: 0;
 }
 
 @media (max-width: 1080px) {
