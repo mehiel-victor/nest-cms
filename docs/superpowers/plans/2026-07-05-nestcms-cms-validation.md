@@ -895,7 +895,7 @@ git commit -m "feat: add cms validation landing page"
 
 Create `docs/product/cms-validation-backlog-issues.md`:
 
-```markdown
+````markdown
 # NestCMS CMS Backlog Issue Drafts
 
 Date: 2026-07-05
@@ -1065,7 +1065,7 @@ gh issue create --title "Plan canvas editor MVP" --label frontend --label editor
 gh issue create --title "Plan AI copilot mediation" --label ai --label backend --label cms --body-file /tmp/nestcms-issue-ai-plan.md
 gh issue create --title "Plan public renderer and publishing snapshots" --label frontend --label backend --label publishing --label cms --body-file /tmp/nestcms-issue-renderer-plan.md
 ```
-```
+````
 
 - [ ] **Step 2: Verify issue draft has no missing markers**
 
