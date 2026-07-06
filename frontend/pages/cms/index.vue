@@ -135,6 +135,9 @@ onUnmounted(() => {
           <NuxtLink to="/demo" class="cms-secondary-link">
             Explorar demo atual
           </NuxtLink>
+          <NuxtLink to="/cms/editor/home" class="cms-secondary-link">
+            Abrir editor local
+          </NuxtLink>
         </div>
       </div>
 
