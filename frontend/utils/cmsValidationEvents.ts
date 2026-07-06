@@ -14,7 +14,13 @@ export interface CmsValidationEvent {
 
 const STORAGE_KEY = 'nestcms_cms_validation_events_v1'
 
-const hasBrowserStorage = () => typeof window !== 'undefined' && !!window.localStorage
+const hasBrowserStorage = () => {
+  try {
+    return typeof window !== 'undefined' && !!window.localStorage
+  } catch {
+    return false
+  }
+}
 
 const makeId = (name: CmsValidationEventName) =>
   `${name}-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`
@@ -34,16 +40,20 @@ export const readCmsValidationEvents = (): CmsValidationEvent[] => {
     return []
   }
 
-  const raw = window.localStorage.getItem(STORAGE_KEY)
-  if (!raw) {
-    return []
-  }
-
   try {
+    const raw = window.localStorage.getItem(STORAGE_KEY)
+    if (!raw) {
+      return []
+    }
+
     const parsed = JSON.parse(raw) as CmsValidationEvent[]
     return Array.isArray(parsed) ? parsed : []
   } catch {
-    window.localStorage.removeItem(STORAGE_KEY)
+    try {
+      window.localStorage.removeItem(STORAGE_KEY)
+    } catch {
+      // Intentionally no-op: unavailable storage should not throw
+    }
     return []
   }
 }
@@ -58,7 +68,11 @@ export const storeCmsValidationEvent = (
 
   const event = createCmsValidationEvent(name, metadata)
   const events = readCmsValidationEvents()
-  window.localStorage.setItem(STORAGE_KEY, JSON.stringify([event, ...events].slice(0, 100)))
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify([event, ...events].slice(0, 100)))
+  } catch {
+    return null
+  }
   return event
 }
 
@@ -67,5 +81,9 @@ export const clearCmsValidationEvents = () => {
     return
   }
 
-  window.localStorage.removeItem(STORAGE_KEY)
+  try {
+    window.localStorage.removeItem(STORAGE_KEY)
+  } catch {
+    return
+  }
 }
